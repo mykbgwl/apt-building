@@ -1,16 +1,29 @@
 package apt.building.springboot.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import apt.building.springboot.service.RoomService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/room")
-//@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/room")
 public class RoomController {
+
+    private final RoomService roomService;
+
+    public RoomController(RoomService roomService) {
+        this.roomService = roomService;
+    }
+
     @GetMapping("/")
-    public String ping(){
+    public String ping() {
         return "hello";
+    }
+
+    @PostMapping("/add/{buildingId}")
+    public ResponseEntity<?> addRoom(
+            @PathVariable Long buildingId
+    ) {
+        roomService.addRoom(buildingId);
+        return ResponseEntity.ok("Room created for building with ID: " + buildingId);
     }
 }

@@ -1,25 +1,67 @@
 package apt.building.springboot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Room {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private double temp;
+    private float temp = (float) (10 + Math.random() * 30);
     private boolean heatingEnabled;
     private boolean coolingEnabled;
     @ManyToOne
-    @JoinColumn(name = "rooms")
+    @JoinColumn(name = "building_id")
+    @JsonBackReference
     private Building building;
+
     public Room() {
-        this.temp = 10 + Math.random() * 30;
+    }
+
+    public Room(Building building) {
+        this.building = building;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public float getTemp() {
+        return temp;
+    }
+
+    public void setTemp(float temp) {
+        this.temp = temp;
+    }
+
+    public boolean isHeatingEnabled() {
+        return temp < building.getRequestedTemperature();
+    }
+
+    public void setHeatingEnabled(boolean heatingEnabled) {
+        this.heatingEnabled = heatingEnabled;
+    }
+
+    public boolean isCoolingEnabled() {
+        return temp > building.getRequestedTemperature();
+    }
+
+    public void setCoolingEnabled(boolean coolingEnabled) {
+        this.coolingEnabled = coolingEnabled;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 }
