@@ -32,4 +32,20 @@ public class RoomService {
         room.setBuilding(building);
         building.getRooms().add(room);
     }
+
+    @Transactional
+    public void addApt(Long buildingId) {
+        Building building = buildingService.getBuildingById(buildingId);
+        Room room = new Room();
+        room.setBuilding(building);
+        building.getRooms().add(room);
+    }
+
+    @Transactional
+    public void addRomCom(Long buildingId) {
+        Building building = buildingService.getBuildingById(buildingId);
+        Room room = new Room();
+        room.setBuilding(building);
+        building.getRooms().add(room);
+    }
 }
