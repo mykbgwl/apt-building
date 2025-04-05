@@ -14,11 +14,6 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @GetMapping("/")
-    public String ping() {
-        return "hello";
-    }
-
     @PostMapping("/add/{buildingId}")
     public ResponseEntity<?> addRoom(
             @PathVariable Long buildingId

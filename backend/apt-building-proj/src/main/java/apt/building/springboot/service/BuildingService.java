@@ -24,6 +24,11 @@ public class BuildingService {
                 .orElseThrow(() -> new EntityNotFoundException("Building not found with ID: " + buildingId));
     }
 
+    public List<Building> getAllBuildings() {
+        return buildingRepository.findAll();
+    }
+
+
     @Transactional
     public Building createBuilding() {
         Building building = new Building();

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/building")
 public class BuildingController {
@@ -23,6 +24,12 @@ public class BuildingController {
     public Building createBuilding(){
         return buildingService.createBuilding();
     }
+
+    @GetMapping("/")
+    public List<Building> getAllBuildings() {
+        return buildingService.getAllBuildings();
+    }
+
 
     @GetMapping("/{id}/rooms")
     public List<Room> getAllRooms(

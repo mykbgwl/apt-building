@@ -19,7 +19,6 @@ public class Building {
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
     private List<Room> rooms = new ArrayList<>();
 
-
     public Building() {
     }
 
