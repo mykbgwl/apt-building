@@ -1,5 +1,6 @@
 package apt.building.springboot.model;
 
+import apt.building.springboot.model.type.RoomType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
@@ -13,8 +14,8 @@ public class Apartment extends Room {
     public Apartment() {
     }
 
-    public Apartment(Building building, int apartmentNumber, String ownerName) {
-        super(building);
+    public Apartment(Building building, RoomType roomType, int apartmentNumber, String ownerName) {
+        super(building,roomType);
         this.apartmentNumber = apartmentNumber;
         this.ownerName = ownerName;
     }

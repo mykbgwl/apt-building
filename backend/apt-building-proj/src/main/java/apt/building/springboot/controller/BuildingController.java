@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/building")
 public class BuildingController {
@@ -31,18 +31,18 @@ public class BuildingController {
     }
 
 
-    @GetMapping("/{id}/rooms")
+    @GetMapping("/{buildingId}/rooms")
     public List<Room> getAllRooms(
-            @PathVariable(name = "id") Long id
+            @PathVariable(name = "buildingId") Long id
     ) {
         return roomService.getAllBuildingRoom(id);
     }
 
-    @PutMapping("/{id}/temperature")
+    @PutMapping("/{buildingId}/temperature")
     public Building updateBuildingTemperature(
-            @PathVariable(name = "id") Long id,
+            @PathVariable(name = "buildingId") Long buildingId,
             @RequestParam(name = "requestedTemperature") float requestedTemperature
     ) {
-        return buildingService.updateBuildingRequestedTemperature(id, requestedTemperature);
+        return buildingService.updateBuildingRequestedTemperature(buildingId, requestedTemperature);
     }
 }

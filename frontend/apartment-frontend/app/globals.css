@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+/* Daikin Theme Colors */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F4F8FB; /* Light grayish blue */
+  --foreground: #171717; /* Dark text */
+  --primary-blue: #007AC2; /* Daikin Blue */
+  --secondary-blue: #005F9E; /* Darker Daikin Blue */
+  --button-hover: #004F87; /* Even Darker Daikin Blue */
+  --card-bg: #E3F2FD; /* Soft Blue for Cards */
 }
 
 @theme inline {
@@ -12,15 +17,46 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Ensure Light Mode is Default */
 body {
-  background: var(--background);
+  background: var(--background) !important; /* Force Daikin background */
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 12px 20px;
+  font-size: 18px;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: var(--button-hover);
+}
+
+/* Card Styles */
+.card {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove Dark Mode Override */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #F4F8FB !important; /* Keep Daikin Light Theme */
+    --foreground: #171717;
+  }
 }

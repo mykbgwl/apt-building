@@ -21,12 +21,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className="bg-gray-800 text-white p-4 shadow-md">
-          <div className="container mx-auto flex justify-between">
+        <nav className="bg-[#0097E0] text-black p-4 shadow-md">
+          <div className="container mx-auto flex justify-between items-center">
             <h1 className="text-xl font-bold">🏢 Building Manager</h1>
             <div className="flex space-x-4">
-              <Link href="/building" className="hover:underline">Buildings</Link>
-              {/*<Link href="/apartments" className="hover:underline">Rooms</Link>*/}
+              <Link href="/building" className="hover:underline">Back</Link>
             </div>
           </div>
         </nav>

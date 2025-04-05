@@ -1,5 +1,6 @@
 package apt.building.springboot.model;
 
+import apt.building.springboot.model.type.RoomType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
@@ -13,6 +14,16 @@ public class Room {
     private float temp = (float) (10 + Math.random() * 30);
     private boolean heatingEnabled;
     private boolean coolingEnabled;
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+    }
+
+    private RoomType roomType = RoomType.ROOM;
     @ManyToOne
     @JoinColumn(name = "building_id")
     @JsonBackReference
@@ -21,8 +32,9 @@ public class Room {
     public Room() {
     }
 
-    public Room(Building building) {
+    public Room(Building building, RoomType roomType) {
         this.building = building;
+        this.roomType = roomType;
     }
 
     public Long getId() {

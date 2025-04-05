@@ -3,6 +3,8 @@ package apt.building.springboot.service;
 import apt.building.springboot.model.Apartment;
 import apt.building.springboot.model.Building;
 import apt.building.springboot.model.CommonRoom;
+import apt.building.springboot.model.type.CommonRoomType;
+import apt.building.springboot.model.type.RoomType;
 import apt.building.springboot.repository.BuildingRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -32,10 +34,10 @@ public class BuildingService {
     @Transactional
     public Building createBuilding() {
         Building building = new Building();
-        Apartment apartment101 = new Apartment(building, 101, "Penny Parker");
-        Apartment apartment102 = new Apartment(building, 102, "Luna Snow");
-        CommonRoom gym = new CommonRoom(building, "Gym");
-        CommonRoom library = new CommonRoom(building, "Library");
+        Apartment apartment101 = new Apartment(building, RoomType.APARTMENT, 101, "Penny Parker");
+        Apartment apartment102 = new Apartment(building, RoomType.APARTMENT, 102, "Luna Snow");
+        CommonRoom gym = new CommonRoom(building, RoomType.COMMON_ROOM, CommonRoomType.GYM);
+        CommonRoom library = new CommonRoom(building, RoomType.COMMON_ROOM, CommonRoomType.LIBRARY);
         building.getRooms().addAll(List.of(apartment101, apartment102, gym, library));
         return buildingRepository.save(building);
     }
